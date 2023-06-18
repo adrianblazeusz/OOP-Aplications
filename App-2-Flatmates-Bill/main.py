@@ -39,7 +39,6 @@ class PdfReport:
         self.filename = filename
 
     def generate(self, flatmate1, flatmate2, bill):
-
         flatmate1_pay = str(round(flatmate1.pays(bill, flatmate2), 2))
         flatmate2_pay = str(round(flatmate2.pays(bill, flatmate1), 2))
 
@@ -69,12 +68,22 @@ class PdfReport:
         pdf.output(self.filename)
 
 
-the_bill = Bill(amount=120, period="March 2021")
-john = Flatmate(name="John", days_in_house=20)
-marry = Flatmate(name="Marry", days_in_house=25)
+amount = float(input("Hey user, enter the bill amount: "))
+period = input("What is the bill period? E.g December 2023: ")
 
-print("John pays: ", john.pays(bill=the_bill, flatmate2=marry))
-print("Marry pays: ", marry.pays(bill=the_bill, flatmate2=john))
+name1 = input("Whats is your name? ")
+days_in_house1 = int(input(f"How many days did {name1} stays in the house during the bill period? "))
 
-pdf_report = PdfReport(filename="Report1.pdf")
-pdf_report.generate(flatmate1=john, flatmate2=marry, bill=the_bill)
+name2 = input("Whats is your name? ")
+days_in_house2 = int(input(f"How many days did {name2} stays in the house during the bill period? "))
+
+
+the_bill = Bill(amount, period)
+flatmate1 = Flatmate(name1, days_in_house1)
+flatmate2 = Flatmate(name2, days_in_house2)
+
+print(f"{flatmate1.name} pays: ", flatmate1.pays(the_bill, flatmate2))
+print(f"{flatmate2.name} pays: ", flatmate2.pays(the_bill, flatmate1))
+
+pdf_report = PdfReport(filename=f"{the_bill.period}.pdf")
+pdf_report.generate(flatmate1, flatmate2, the_bill)
