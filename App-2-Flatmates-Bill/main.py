@@ -1,21 +1,13 @@
-from flat import Bill, Flatmate
-from report import PdfReport
+from flask.views import MethodView
 
-amount = float(input("Hey user, enter the bill amount: "))
-period = input("What is the bill period? E.g December 2023: ")
+class HomePage:
+    pass
 
-name1 = input("Whats is your name? ")
-days_in_house1 = int(input(f"How many days did {name1} stays in the house during the bill period? "))
+class BillFormPage:
+    pass
 
-name2 = input("Whats is your name? ")
-days_in_house2 = int(input(f"How many days did {name2} stays in the house during the bill period? "))
+class ResultsPage:
+    pass
 
-the_bill = Bill(amount, period)
-flatmate1 = Flatmate(name1, days_in_house1)
-flatmate2 = Flatmate(name2, days_in_house2)
-
-print(f"{flatmate1.name} pays: ", flatmate1.pays(the_bill, flatmate2))
-print(f"{flatmate2.name} pays: ", flatmate2.pays(the_bill, flatmate1))
-
-pdf_report = PdfReport(filename=f"{the_bill.period}.pdf")
-pdf_report.generate(flatmate1, flatmate2, the_bill)
+class BillForm:
+    pass
