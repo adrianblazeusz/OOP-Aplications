@@ -1,11 +1,21 @@
 import numpy as np
 from PIL import Image
 
-data = np.zeros((5,4,3), dtype= np.unit8)
-data[:] = [255, 255, 0]
-print(data)
 
-data[1:3] = [255,0,0]
+class Canvas:
+    """Object where all shapes are going to be drawn"""
 
-img = Image.fromarray(data, "RGB")
-img.save("canvas.png")
+    def __init__(self, height, width, color):
+        self.color = color
+        self.height = height
+        self.width = width
+
+        # Create a 3d numpy array of zeros
+        self.data = np.zeros((self.height, self.width, 3), dtype=np.uint8)
+        # Change [0,0,0] with user given values for color
+        self.data[:] = self.color
+
+    def make(self, imagepath):
+        """Converts the current array into an image file"""
+        img = Image.fromarray(self.data, 'RGB')
+        img.save(imagepath)
