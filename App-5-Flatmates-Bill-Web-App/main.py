@@ -1,6 +1,6 @@
 from flask.views import MethodView
 from wtforms import Form, StringField, SubmitField
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -20,8 +20,10 @@ class BillFormPage(MethodView):
 
 class ResultsPage(MethodView):
 
-    def get(self):
-        return "Here we will see the results!"
+    def post(self):
+        billform = BillForm(request.form)
+        amount = billform.amount.data
+        return amount
 
 
 class BillForm(Form):
