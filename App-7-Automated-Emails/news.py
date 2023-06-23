@@ -6,7 +6,7 @@ class NewsFeed:
     """Representing multiple news titles and links as a single string
     """
     base_url = 'https://newsapi.org/v2/everything?'
-    api_key = '823595b53bd84418a84f6cf0fb052807'
+    api_key = 'key'
 
     def __init__(self, interest, from_date, to_date, language='en',
                  sort_by='publishedAt'):
