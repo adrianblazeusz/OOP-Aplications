@@ -5,7 +5,7 @@ df = pd.read_excel("people.xlsx")
 
 for index, row in df.iterrows():
     print(row)
-    email = yagmail.SMTP(user="pythovtest@gmail.com", password="wbcdivlhdxlihrtt")
+    email = yagmail.SMTP(user="mail", password="password")
     email.send(to=row["email"],
                subject=f"Your {row['interest']} news for today!",
                contents=f"Hi {row['name']}\n See what's on about {row['interest']} today.",
