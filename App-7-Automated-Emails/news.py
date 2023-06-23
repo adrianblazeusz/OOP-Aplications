@@ -3,10 +3,12 @@ from pprint import pprint
 
 
 class NewsFeed:
+    """Representing multiple news titles and links as a single string
+    """
     base_url = 'https://newsapi.org/v2/everything?'
     api_key = '823595b53bd84418a84f6cf0fb052807'
 
-    def __init__(self, interest, from_date, to_date, language= "en",
+    def __init__(self, interest, from_date, to_date, language='en',
                  sort_by='publishedAt'):
 
         self.interest = interest
@@ -35,6 +37,7 @@ class NewsFeed:
         return email_body
 
 
-new_feed = NewsFeed(interest='nasa', from_date='2023-06-21', to_date='2023-06-21')
-print(new_feed.get())
+if __name__ == "__main__":
+    new_feed = NewsFeed(interest='nasa', from_date='2023-06-21', to_date='2023-06-21', language='en')
+    print(new_feed.get())
 
